@@ -1,0 +1,9 @@
+CREATE INDEX idx_customer_email ON Customer(email);
+CREATE INDEX idx_order_customerId ON "Order"(customerId);
+CREATE INDEX idx_product_categoryId ON Product(categoryId);
+CREATE INDEX idx_cart_customerId ON ShoppingCart(customerId);
+CREATE INDEX idx_cartItem_cartId ON CartItem(cartId);
+CREATE INDEX idx_cartItem_productId ON CartItem(productId);
+CREATE INDEX idx_orderItem_orderId ON OrderItem(orderId);
+CREATE INDEX idx_orderItem_productId ON OrderItem(productId);
+CREATE INDEX idx_payment_orderId ON Payment(orderId);
