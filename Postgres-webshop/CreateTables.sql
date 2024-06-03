@@ -1,5 +1,5 @@
 
-CREATE TABLE Customer (
+CREATE TABLE "Customer" (
     customerId SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -8,37 +8,37 @@ CREATE TABLE Customer (
     phoneNumber VARCHAR(20)
 );
 
-CREATE TABLE Category (
+CREATE TABLE "Category" (
     categoryId SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT
 );
 
-CREATE TABLE Product (
+CREATE TABLE "Product" (
     productId SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stockQuantity INT NOT NULL,
     categoryId INT,
-    FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
+    FOREIGN KEY (categoryId) REFERENCES "Category"(categoryId)
 );
 
-CREATE TABLE ShoppingCart (
+CREATE TABLE "ShoppingCart" (
     cartId SERIAL PRIMARY KEY,
     createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     customerId INT,
-    FOREIGN KEY (customerId) REFERENCES Customer(customerId)
+    FOREIGN KEY (customerId) REFERENCES "Customer"(customerId)
 );
 
-CREATE TABLE CartItem (
+CREATE TABLE "CartItem" (
     cartItemId SERIAL PRIMARY KEY,
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     cartId INT,
     productId INT,
-    FOREIGN KEY (cartId) REFERENCES ShoppingCart(cartId),
-    FOREIGN KEY (productId) REFERENCES Product(productId)
+    FOREIGN KEY (cartId) REFERENCES "ShoppingCart"(cartId),
+    FOREIGN KEY (productId) REFERENCES "Product"(productId)
 );
 
 CREATE TABLE "Order" (
@@ -47,20 +47,20 @@ CREATE TABLE "Order" (
     status VARCHAR(50),
     totalAmount DECIMAL(10, 2),
     customerId INT,
-    FOREIGN KEY (customerId) REFERENCES Customer(customerId)
+    FOREIGN KEY (customerId) REFERENCES "Customer"(customerId)
 );
 
-CREATE TABLE OrderItem (
+CREATE TABLE "OrderItem" (
     orderItemId SERIAL PRIMARY KEY,
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     orderId INT,
     productId INT,
     FOREIGN KEY (orderId) REFERENCES "Order"(orderId),
-    FOREIGN KEY (productId) REFERENCES Product(productId)
+    FOREIGN KEY (productId) REFERENCES "Product"(productId)
 );
 
-CREATE TABLE Payment (
+CREATE TABLE "Payment" (
     paymentId SERIAL PRIMARY KEY,
     paymentDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     amount DECIMAL(10, 2) NOT NULL,
